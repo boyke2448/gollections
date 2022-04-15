@@ -1,13 +1,13 @@
 package queue
 
-// Queue[T interface{}] is a queue which will accept elements of type
+// Queue[T interface{}] is a queue which will accept elements of type T
 type Queue[T interface{}] struct {
 	count int
 	front *queueItem[T]
 	back  *queueItem[T]
 }
 
-// GetLength gets the size of the queue
+// Count gets the size of the queue
 func (q Queue[T]) Count() int {
 	return q.count
 }
