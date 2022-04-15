@@ -5,14 +5,14 @@ It uses a linked list as internal implementation to achieve this.
 IMPORTANT: This package needs go 1.18 or greater because it uses generics.
 
 Usage:
-	q := goqueue.New[SomeType]()
+	q := queue.Queue[SomeType]()
 	q.Enqueue(&SomeType{})
 	q.Enqueue(&SomeType{})
 	q.Enqueue(&SomeType{})
 	var item, err := q.Dequeue()
 	if err != nil {
 		switch err.(type) {
-		case QueueEmptyError:
+		case queue.QueueEmptyError:
 			log.Fatal(err)
 			os.Exit(1)
 		default:
