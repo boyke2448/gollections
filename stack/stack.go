@@ -1,9 +1,11 @@
 package stack
 
+import "github.com/boyke2448/gollections/linkedList"
+
 // Stack[T interface{}] is a stack which will accept elements of type T
 type Stack[T interface{}] struct {
 	count int
-	top   *stackItem[T]
+	top   *linkedList.LinkedList[T]
 }
 
 // Count gets the size of the stack
@@ -13,12 +15,12 @@ func (s Stack[T]) Count() int {
 
 // Push adds item to the top of the stack
 func (s *Stack[T]) Push(value *T) {
-	item := &stackItem[T]{value: value}
+	item := &linkedList.LinkedList[T]{Value: value}
 	if s.top == nil {
 		s.top = item
 	} else {
 		currentTop := s.top
-		item.next = currentTop
+		item.Next = currentTop
 		s.top = item
 	}
 	s.count++
@@ -31,8 +33,8 @@ func (s *Stack[T]) Pop() (*T, error) {
 	if s.top == nil {
 		return nil, StackEmptyError{}
 	}
-	item := s.top.value
-	s.top = s.top.next
+	item := s.top.Value
+	s.top = s.top.Next
 	s.count--
 	return item, nil
 }

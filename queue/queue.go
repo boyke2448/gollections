@@ -1,10 +1,12 @@
 package queue
 
+import "github.com/boyke2448/gollections/linkedList"
+
 // Queue[T interface{}] is a queue which will accept elements of type T
 type Queue[T interface{}] struct {
 	count int
-	front *queueItem[T]
-	back  *queueItem[T]
+	front *linkedList.LinkedList[T]
+	back  *linkedList.LinkedList[T]
 }
 
 // Count gets the size of the queue
@@ -14,15 +16,15 @@ func (q Queue[T]) Count() int {
 
 // Enqueue add item to the back of the queue
 func (q *Queue[T]) Enqueue(value *T) {
-	queueItem := &queueItem[T]{value: value}
+	queueItem := &linkedList.LinkedList[T]{Value: value}
 	if q.front == nil {
 		q.front = queueItem
 	} else {
-		if q.front.next == nil {
+		if q.front.Next == nil {
 			q.back = queueItem
-			q.front.next = q.back
+			q.front.Next = q.back
 		} else {
-			q.back.next = queueItem
+			q.back.Next = queueItem
 			q.back = queueItem
 		}
 	}
@@ -37,7 +39,7 @@ func (q *Queue[T]) Dequeue() (*T, error) {
 		return nil, QueueEmptyError{}
 	}
 	item := q.front
-	q.front = q.front.next
+	q.front = q.front.Next
 	q.count--
-	return item.value, nil
+	return item.Value, nil
 }
