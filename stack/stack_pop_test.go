@@ -9,7 +9,7 @@ import (
 func Test_PopEmptyStack_ShouldReturnNilAndStackEmptyError(t *testing.T) {
 	type s struct{}
 
-	stck := stack.Stack[s]{}
+	stck := stack.New[s]()
 	item, err := stck.Pop()
 	if err == nil {
 		t.Error("Expected error but did not receive one.")
@@ -28,7 +28,7 @@ func Test_PopEmptyStack_ShouldReturnNilAndStackEmptyError(t *testing.T) {
 func Test_Pop1ElementOnStack_ShouldReturnItem(t *testing.T) {
 	type s struct{}
 
-	stck := stack.Stack[s]{}
+	stck := stack.New[s]()
 	stck.Push(&s{})
 	length := stck.Count()
 

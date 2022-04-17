@@ -26,7 +26,7 @@ func Test_AddStructElementsToStack_ShouldContainMultipleStackItems(t *testing.T)
 	type s struct{}
 
 	item := make([]s, 10)
-	stck := stack.Stack[s]{}
+	stck := stack.New[s]()
 	for _, v := range item {
 		stck.Push(&v)
 	}
@@ -36,7 +36,7 @@ func Test_AddStructElementsToStack_ShouldContainMultipleStackItems(t *testing.T)
 }
 
 func test_addElementToStack[T interface{}](t *testing.T, value *T) {
-	s := stack.Stack[T]{}
+	s := stack.New[T]()
 	s.Push(value)
 	if s.Count() != 1 {
 		t.Errorf("Expected stack length to be 1 but found %d", s.Count())
