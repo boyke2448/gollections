@@ -9,7 +9,7 @@ import (
 func Test_DequeueEmptyQueue_ShouldReturnNilAndQueueEmptyError(t *testing.T) {
 	type s struct{}
 
-	q := queue.Queue[s]{}
+	q := queue.New[s]()
 	item, err := q.Dequeue()
 	if err == nil {
 		t.Error("Expected error but did not receive one.")
@@ -26,7 +26,7 @@ func Test_DequeueEmptyQueue_ShouldReturnNilAndQueueEmptyError(t *testing.T) {
 func Test_Dequeue1ElementInQueue_ShouldReturnItem(t *testing.T) {
 	type s struct{}
 
-	q := queue.Queue[s]{}
+	q := queue.New[s]()
 	q.Enqueue(&s{})
 	size := q.Count()
 

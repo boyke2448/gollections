@@ -7,7 +7,7 @@ import (
 )
 
 func Test_InitialGetLength_ShouldBe0(t *testing.T) {
-	q := queue.Queue[int]{}
+	q := queue.New[int]()
 	if q.Count() != 0 {
 		t.Errorf("Expected queue length to be 0 but found %d", q.Count())
 	}

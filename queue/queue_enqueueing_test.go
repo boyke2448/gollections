@@ -26,7 +26,7 @@ func Test_AddStructElementsToQueue_ShouldContainMultipleQueueItems(t *testing.T)
 	type s struct{}
 
 	item := make([]s, 10)
-	q := queue.Queue[s]{}
+	q := queue.New[s]()
 	for _, v := range item {
 		q.Enqueue(&v)
 	}
@@ -36,7 +36,7 @@ func Test_AddStructElementsToQueue_ShouldContainMultipleQueueItems(t *testing.T)
 }
 
 func test_addElementToQueue[T interface{}](t *testing.T, value *T) {
-	q := queue.Queue[T]{}
+	q:=queue.New[T]()
 	q.Enqueue(value)
 	if q.Count() != 1 {
 		t.Errorf("Expected queue length to be 1 but found %d", q.Count())
