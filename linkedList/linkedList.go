@@ -1,6 +1,6 @@
 package linkedList
 
 type LinkedList[T interface{}] struct {
-	Value *T
+	Value T
 	Next  *LinkedList[T]
 }

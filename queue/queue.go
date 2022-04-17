@@ -4,7 +4,7 @@ import "github.com/boyke2448/gollections/linkedList"
 
 type IQueue[T interface{}] interface {
 	Count() int
-	Enqueue(value *T)
+	Enqueue(value T)
 	Dequeue() (*T, error)
 }
 
@@ -25,7 +25,7 @@ func (q queue[T]) Count() int {
 }
 
 // Enqueue add item to the back of the queue
-func (q *queue[T]) Enqueue(value *T) {
+func (q *queue[T]) Enqueue(value T) {
 	queueItem := &linkedList.LinkedList[T]{Value: value}
 	if q.front == nil {
 		q.front = queueItem
@@ -48,8 +48,8 @@ func (q *queue[T]) Dequeue() (*T, error) {
 	if q.front == nil {
 		return nil, QueueEmptyError{}
 	}
-	item := q.front
+	item := q.front.Value
 	q.front = q.front.Next
 	q.count--
-	return item.Value, nil
+	return &item, nil
 }
