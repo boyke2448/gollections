@@ -29,7 +29,7 @@ func Test_Pop1ElementOnStack_ShouldReturnItem(t *testing.T) {
 	type s struct{}
 
 	stck := stack.New[s]()
-	stck.Push(s{})
+	stck.Push(&s{})
 	length := stck.Count()
 
 	if length != 1 {

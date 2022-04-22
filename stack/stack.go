@@ -8,7 +8,7 @@ type IStack[T interface{}] interface {
 	Count() int
 
 	// Push adds item to the top of the stack
-	Push(value T)
+	Push(value *T)
 
 	// Pop remove item from the top of the stack.
 	// if stack is empty nil is returned with a StackEmptyError
@@ -32,7 +32,7 @@ func (s stack[T]) Count() int {
 }
 
 // Push adds item to the top of the stack
-func (s *stack[T]) Push(value T) {
+func (s *stack[T]) Push(value *T) {
 	item := &linkedList.LinkedList[T]{Value: value}
 	if s.top == nil {
 		s.top = item
@@ -54,5 +54,5 @@ func (s *stack[T]) Pop() (*T, error) {
 	item := s.top.Value
 	s.top = s.top.Next
 	s.count--
-	return &item, nil
+	return item, nil
 }

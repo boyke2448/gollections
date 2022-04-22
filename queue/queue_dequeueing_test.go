@@ -27,7 +27,7 @@ func Test_Dequeue1ElementInQueue_ShouldReturnItem(t *testing.T) {
 	type s struct{}
 
 	q := queue.New[s]()
-	q.Enqueue(s{})
+	q.Enqueue(&s{})
 	size := q.Count()
 
 	if size != 1 {
